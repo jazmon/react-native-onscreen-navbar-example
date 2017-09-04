@@ -9,21 +9,21 @@
     "flow": "./node_modules/.bin/flow"
   },
   "dependencies": {
-    "react": "~15.4.1",
-    "react-native": "^0.42.3",
+    "react": "~15.6.1",
+    "react-native": "^0.48.1",
     "react-native-onscreen-navbar": "file:../../"
   },
   "devDependencies": {
-    "eslint": "^3.10.0",
-    "eslint-config-airbnb": "^13.0.0",
-    "eslint-plugin-babel": "^3.3.0",
+    "eslint": "^4.6.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-flowtype": "^2.25.0",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.6.0",
-    "eslint-plugin-react-native": "^2.0.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.3.0",
+    "eslint-plugin-react-native": "^3.1.0",
     "eslint-plugin-sort-class-members": "^1.1.1",
-    "flow-bin": "^0.35.0"
+    "flow-bin": "^0.54.0"
   },
   "description": "an example project",
   "main": "index.android.js",
