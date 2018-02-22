@@ -1,12 +1,12 @@
 {
-  "name": "ExampleProject",
+  "name": "react-native-onscreen-navbar-example",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "lint": "./node_modules/.bin/eslint -c .eslintrc.js src",
-    "lint:fix": "./node_modules/.bin/eslint -c .eslintrc.js src --fix",
-    "flow": "./node_modules/.bin/flow"
+    "lint": "eslint src",
+    "lint:fix": "yarn lint --fix",
+    "flow": "flow"
   },
   "dependencies": {
     "react": "16.2.0",
@@ -14,16 +14,16 @@
     "react-native-onscreen-navbar": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.10.0",
-    "eslint-config-airbnb": "^13.0.0",
-    "eslint-plugin-babel": "^3.3.0",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-flowtype": "^2.25.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.6.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-react-native": "^2.0.0",
-    "eslint-plugin-sort-class-members": "^1.1.1",
-    "flow-bin": "^0.35.0"
+    "flow-bin": "^0.63.0",
+    "prettier": "^1.10.2"
   },
   "description": "an example project",
   "main": "index.android.js",

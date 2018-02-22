@@ -12,7 +12,7 @@ import {
 
 import NavigationBar from 'react-native-onscreen-navbar';
 
-const colors: Array<string> = [
+const colors: string[] = [
   '#f44336',
   '#E91E63',
   '#9C27B0',
@@ -34,34 +34,23 @@ const colors: Array<string> = [
   '#607D8B',
 ];
 
-function getColor(array: Array<string>, currentIndex: number = 0) {
-  let index: number = currentIndex;
-  index = index >= array.length - 1 ? 0 : index += 1;
-  return index;
+function getColor(array: string[], currentIndex: number = 0) {
+  return currentIndex >= array.length - 1 ? 0 : currentIndex + 1;
 }
 
 type State = {
-  color: number;
-  translucent: boolean;
-  animating: boolean;
+  color: number,
+  translucent: boolean,
+  animating: boolean,
 };
 
-class ExampleProject extends Component {
-  interval: ?number;
-
-  constructor() {
-    super();
-
-    this.state = {
-      color: getColor(colors),
-      translucent: false,
-      animating: false,
-    };
-
-    this.interval = null;
-  }
-
-  state: State;
+class ExampleProject extends Component<{}, State> {
+  interval: ?IntervalID;
+  state = {
+    color: getColor(colors),
+    translucent: false,
+    animating: false,
+  };
 
   componentWillUnmount() {
     if (this.interval) {
@@ -78,10 +67,10 @@ class ExampleProject extends Component {
   };
 
   toggleTranslucent = (): void => {
-    this.setState({
-      translucent: !this.state.translucent,
-    });
-  }
+    this.setState(prevState => ({
+      translucent: !prevState.translucent,
+    }));
+  };
 
   toggleAnimating = (): void => {
     const animate: boolean = !this.state.animating;
@@ -90,16 +79,16 @@ class ExampleProject extends Component {
       clearInterval(this.interval);
     } else {
       this.interval = setInterval(() => {
-        this.setState({
-          color: getColor(colors, this.state.color),
-        });
+        this.setState(prevState => ({
+          color: getColor(colors, prevState.color),
+        }));
       }, 300);
     }
 
     this.setState({
       animating: animate,
     });
-  }
+  };
 
   render() {
     const { width, height } = Dimensions.get('window');
@@ -107,14 +96,21 @@ class ExampleProject extends Component {
     const backgroundColor: string = colors[color];
     return (
       <View
-        style={[styles.container, {
-          width,
-          paddingBottom: this.state.translucent ? NavigationBar.currentHeight : 0,
-          paddingTop: this.state.translucent ? StatusBar.currentHeight : 0,
-          height: height + (this.state.translucent
-            ? (StatusBar.currentHeight + NavigationBar.currentHeight)
-            : 0),
-        }]}
+        style={[
+          styles.container,
+          {
+            width,
+            paddingBottom: this.state.translucent
+              ? NavigationBar.currentHeight
+              : 0,
+            paddingTop: this.state.translucent ? StatusBar.currentHeight : 0,
+            height:
+              height +
+              (this.state.translucent
+                ? StatusBar.currentHeight + NavigationBar.currentHeight
+                : 0),
+          },
+        ]}
       >
         <StatusBar
           animated={true}
@@ -141,18 +137,12 @@ class ExampleProject extends Component {
             </Text>
           </View>
           <View style={styles.buttonContainer}>
-            <Button
-              title="Change color!"
-              onPress={this.changeColor}
-            />
+            <Button title="Change color!" onPress={this.changeColor} />
             <Button
               title={animating ? 'Stop animating' : 'Start animating'}
               onPress={this.toggleAnimating}
             />
-            <Button
-              title="Set translucent!"
-              onPress={this.toggleTranslucent}
-            />
+            <Button title="Set translucent!" onPress={this.toggleTranslucent} />
           </View>
         </View>
       </View>
@@ -160,9 +150,7 @@ class ExampleProject extends Component {
   }
 }
 
-type Styles = {[key: string]: Object};
-
-const styles: Styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',

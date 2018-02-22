@@ -1,15 +1,6 @@
-import React, { PropTypes } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableNativeFeedback,
-} from 'react-native';
-
-const propTypes = {
-  onPress: PropTypes.func,
-  children: PropTypes.node.isRequired,
-};
+// @flow
+import * as React from 'react';
+import { View, StyleSheet, TouchableNativeFeedback } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,22 +9,19 @@ const styles = StyleSheet.create({
   },
 });
 
-function Button({ onPress, children }) {
-  /* eslint-disable new-cap */
-  return (
-    <TouchableNativeFeedback
-      delayPressIn={0}
-      background={TouchableNativeFeedback.Ripple('#000')}
-      onPress={onPress}
-    >
-      <View style={styles.container}>
-        {children}
-      </View>
-    </TouchableNativeFeedback>
-  );
-  /* eslint-enable new-cap */
-}
-Button.propTypes = propTypes;
+type Props = {
+  onPress: () => void,
+  children: React$Node,
+};
 
+const Button = ({ onPress, children }: Props) => (
+  <TouchableNativeFeedback
+    delayPressIn={0}
+    background={TouchableNativeFeedback.Ripple('#000')}
+    onPress={onPress}
+  >
+    <View style={styles.container}>{children}</View>
+  </TouchableNativeFeedback>
+);
 
 export default Button;
